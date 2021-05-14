@@ -43,8 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IFormatString.cs" />
+    <Compile Include="ISKkonto.cs" />
+    <Compile Include="Konto.cs" />
+    <Compile Include="Kund.cs" />
+    <Compile Include="List.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sparkonto.cs" />
+    <Compile Include="xmlException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
