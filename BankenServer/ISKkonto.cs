@@ -7,7 +7,7 @@ using System.Xml;
 
 namespace BankenServer
 {
-    class ISKkonto : Konto, IFormatString
+    class ISKkonto : Konto, IFormatString, IXmlFormat
     {
         int AntalAktier;
 

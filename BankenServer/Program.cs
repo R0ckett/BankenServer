@@ -16,7 +16,7 @@ namespace BankenServer
 
         static void Main(string[] args)
         {
-
+            //laddar in kunderna från dokumentet
             List<Kund> KundList = LoadXml();
 
             Console.CancelKeyPress += new ConsoleCancelEventHandler(CancelKeyPress);
@@ -24,6 +24,7 @@ namespace BankenServer
             tcpListener = new TcpListener(theIp, 8001);
             tcpListener.Start();
 
+            //väntar på anslutning till klient. Kollar om klienten vill begära kunder och om den gör det kallas metod som skickar stringen till klient. annars så sparas kundinfon i ett xml document.
             while (true)
             {
                 try
@@ -43,11 +44,11 @@ namespace BankenServer
 
                     if (message == "RequestMessages")
                     {                       
-                        SkickaMeddelande(socket, KundList);
+                        SkickaKunder(socket, KundList);
                     }
                     else
                     {
-                        KundList = SparaMeddelande(message, KundList);
+                        KundList = SparaKunder(message, KundList);
                     }
                     socket.Close();
 
@@ -63,8 +64,9 @@ namespace BankenServer
             tcpListener.Stop();
             Console.WriteLine("Servern stänger ner!");
         }
-        public static List<Kund> SparaMeddelande(string messageString, List<Kund> KundList)
+        public static List<Kund> SparaKunder(string messageString, List<Kund> KundList)
         {
+            //metod som sparar kunderna och deras konto i xml-filen genom att splitta upp stringen där procentecken(%) las.
             Console.WriteLine("Saving messages");
 
             XmlDocument xmlDoc = new XmlDocument();
@@ -90,6 +92,7 @@ namespace BankenServer
         }
         public static List<Kund> LoadXml()
         {
+            //metod som laddar in xml-documentet. dock måste trycatchen som loadar filen köras en gång utan för att skapa själva filen, se kommentar nedan.
             List<Kund> KundList = new List<Kund>();
             XmlDocument xmlDoc = new XmlDocument();
 
@@ -113,8 +116,9 @@ namespace BankenServer
 
             return KundList;
         }
-        public static void SkickaMeddelande(Socket socket, List<Kund> KundList)
+        public static void SkickaKunder(Socket socket, List<Kund> KundList)
         {
+            //metod som skickar listan med kunder.
             string message = "";
             for (int i = 0; i < KundList.Count; i++)
             {
@@ -124,8 +128,6 @@ namespace BankenServer
                     message += "%";
                 }
             }
-            Console.WriteLine("hej");
-            Console.WriteLine(message);
             Byte[] bMessage = Encoding.ASCII.GetBytes(message);
             socket.Send(bMessage);
         }

@@ -8,7 +8,7 @@ using System.IO;
 
 namespace BankenServer
 {
-    class Kund : IFormatString
+    class Kund : IFormatString, IXmlFormat
     {
         string namn;
         long personNummer;

@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="IFormatString.cs" />
     <Compile Include="ISKkonto.cs" />
+    <Compile Include="IXmlFormat.cs" />
     <Compile Include="Konto.cs" />
     <Compile Include="Kund.cs" />
     <Compile Include="List.cs" />

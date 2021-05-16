@@ -7,7 +7,7 @@ using System.Xml;
 
 namespace BankenServer
 {
-    class Sparkonto : Konto, IFormatString
+    class Sparkonto : Konto, IFormatString, IXmlFormat
     {
         double ränta;
         

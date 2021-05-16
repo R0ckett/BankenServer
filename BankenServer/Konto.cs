@@ -7,7 +7,7 @@ using System.Xml;
 
 namespace BankenServer
 {
-    class Konto : IFormatString
+    class Konto : IFormatString, IXmlFormat
     {
         protected double saldo;
 
